@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Invitation Builder</title>
+  <link rel="stylesheet" href="assets/themes.css">
+  <link rel="stylesheet" href="assets/invitation.css">
+  <link rel="stylesheet" href="assets/builder.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">FREE INVITATION BUILDER</div>
+        <h1>Create your invitation</h1>
+        <p>Fill the form, pick a design, upload photos and preview it live. No HTML needed.</p>
+      </div>
+      <div class="topbar-badge">V1 · Netlify</div>
+    </header>
+
+    <main class="builder-grid">
+      <section class="panel form-panel">
+        <form id="invite-form">
+          <div class="section-head">
+            <div><span>01</span><h2>Basic details</h2></div>
+            <small>Everything here appears in the invitation.</small>
+          </div>
+
+          <div class="grid-2">
+            <label>Occasion
+              <select id="occasion" name="occasion">
+                <option value="wedding">Wedding</option>
+                <option value="engagement">Engagement</option>
+                <option value="birthday">Birthday</option>
+                <option value="anniversary">Anniversary</option>
+                <option value="baby-shower">Baby Shower</option>
+                <option value="naming-ceremony">Naming Ceremony</option>
+                <option value="housewarming">Housewarming</option>
+              </select>
+            </label>
+            <label>Page title
+              <input id="pageTitle" name="pageTitle" value="Rahul & Priya – Wedding Invitation" required>
+            </label>
+          </div>
+
+          <div class="grid-2" id="people-grid">
+            <label><span id="person1-label">Person 1</span>
+              <input id="person1" name="person1" value="Rahul" required>
+            </label>
+            <label><span id="person2-label">Person 2</span>
+              <input id="person2" name="person2" value="Priya">
+            </label>
+          </div>
+
+          <div class="grid-2">
+            <label>Invitation heading
+              <input id="heroTitle" name="heroTitle" value="Wedding Invitation">
+            </label>
+            <label>Opening line
+              <input id="splashTitle" name="splashTitle" value="The Wedding Of">
+            </label>
+          </div>
+
+          <div class="section-head spaced">
+            <div><span>02</span><h2>Date & venue</h2></div>
+            <small>Use your local date/time.</small>
+          </div>
+
+          <div class="grid-2">
+            <label>Date
+              <input id="date" name="date" type="date" value="2026-11-15" required>
+            </label>
+            <label>Time
+              <input id="time" name="time" type="time" value="18:30" required>
+            </label>
+          </div>
+          <div class="grid-2">
+            <label>Venue
+              <input id="venue" name="venue" value="Sri Lakshmi Convention Hall">
+            </label>
+            <label>City / Address
+              <input id="address" name="address" value="Bengaluru, Karnataka">
+            </label>
+          </div>
+          <label>Google Maps link
+            <input id="mapUrl" name="mapUrl" placeholder="https://maps.google.com/...">
+          </label>
+
+          <div class="section-head spaced">
+            <div><span>03</span><h2>Extra events</h2></div>
+            <small>Add up to three functions.</small>
+          </div>
+          <div id="events-list" class="events-list"></div>
+          <button class="btn secondary full" type="button" id="add-event">+ Add event</button>
+
+          <div class="section-head spaced">
+            <div><span>04</span><h2>Photos</h2></div>
+            <small>Main photo + up to four gallery photos.</small>
+          </div>
+          <label>Main photo
+            <input id="mainPhoto" type="file" accept="image/*">
+          </label>
+          <div id="main-photo-preview" class="upload-preview empty">No main photo selected</div>
+
+          <label>Gallery photos
+            <input id="galleryPhotos" type="file" accept="image/*" multiple>
+          </label>
+          <div id="gallery-preview" class="gallery-preview"></div>
+          <p class="hint">Photos are resized in your browser before submission so the free setup stays lightweight.</p>
+
+          <div class="section-head spaced">
+            <div><span>05</span><h2>Contact & message</h2></div>
+            <small>Optional but useful for guests.</small>
+          </div>
+          <div class="grid-2">
+            <label>WhatsApp number
+              <input id="whatsapp" name="whatsapp" placeholder="919876543210">
+            </label>
+            <label>WhatsApp button text
+              <input id="whatsappLabel" name="whatsappLabel" value="Send Your Wishes">
+            </label>
+          </div>
+          <label>Message to guests
+            <textarea id="message" name="message" rows="3">With love in our hearts, we invite you to celebrate this beautiful day with us.</textarea>
+          </label>
+          <label>Footer message
+            <input id="footerMessage" name="footerMessage" value="Your presence will make our celebration even more special.">
+          </label>
+
+          <div class="section-head spaced">
+            <div><span>06</span><h2>Design</h2></div>
+            <small>Template controls layout. Theme controls colours.</small>
+          </div>
+          <div class="choice-row">
+            <label class="choice-pill"><input type="radio" name="template" value="classic" checked><span>Classic</span></label>
+            <label class="choice-pill"><input type="radio" name="template" value="minimal"><span>Minimal</span></label>
+            <label class="choice-pill"><input type="radio" name="template" value="luxury"><span>Luxury</span></label>
+          </div>
+          <div id="theme-grid" class="theme-grid"></div>
+
+          <div class="section-head spaced">
+            <div><span>07</span><h2>Sections</h2></div>
+            <small>Hide anything you don't need.</small>
+          </div>
+          <div class="check-grid">
+            <label><input type="checkbox" id="showCountdown" checked> Countdown</label>
+            <label><input type="checkbox" id="showEvents" checked> Events</label>
+            <label><input type="checkbox" id="showGallery" checked> Gallery</label>
+            <label><input type="checkbox" id="showWishes" checked> Wishes</label>
+          </div>
+
+          <div class="form-footer">
+            <div id="status" class="status" aria-live="polite"></div>
+            <button class="btn primary big" type="submit">Create Invitation →</button>
+          </div>
+        </form>
+      </section>
+
+      <aside class="panel preview-panel">
+        <div class="preview-head">
+          <div>
+            <div class="eyebrow">LIVE PREVIEW</div>
+            <h2>What guests will see</h2>
+          </div>
+          <span class="live-dot">LIVE</span>
+        </div>
+        <div id="preview-frame" class="preview-frame"></div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

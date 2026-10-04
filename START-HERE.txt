@@ -1,0 +1,16 @@
+START HERE
+
+1. Extract the ZIP.
+2. Open a terminal inside the invitation-builder folder.
+3. Run: npm install
+4. Run: npm install -g netlify-cli
+5. Run: netlify login
+6. Run: netlify init
+7. Run: netlify dev
+8. Open http://localhost:8888
+9. Fill the form and click Create Invitation.
+10. When happy: netlify deploy --prod
+
+The customer never edits HTML.
+
+The current free V1 stores optimized photo data inside the invitation JSON blob so the project is intentionally simple. Later, move photos into separate blobs when scaling.
